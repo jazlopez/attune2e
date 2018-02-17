@@ -21,6 +21,18 @@ def log(of, out, message):
     print(Fore.BLUE + "[{}/{}] {}".format(of, out, message))
 
 
+def test(name, selector, timeout=3):
+
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, selector)))
+
+    element.click()
+
+    sleep(timeout)
+
+    driver.get_screenshot_as_file(name + '.png')
+
+
 config = {
 
     'url': {
@@ -47,13 +59,13 @@ total = 10
 
 try:
 
-    username = WebDriverWait(driver, 5).until(
+    username = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.NAME, 'username')))
 
-    password = WebDriverWait(driver, 5).until(
+    password = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.NAME, 'password')))
 
-    submit = WebDriverWait(driver, 5).until(
+    submit = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type="submit"]')))
 
     username.send_keys(config['username'])
@@ -67,7 +79,7 @@ try:
     log(passed, total, "User has been successfully logged in")
 
     # collapse
-    sidebar = WebDriverWait(driver, 5).until(
+    sidebar = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, 'collapse-button')))
 
     sidebar.click()
@@ -84,38 +96,40 @@ try:
     passed += 1
     log(passed, total, "Device has been successfully selected")
 
-    chart_tab = WebDriverWait(driver, 5).until(
+    chart_tab = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, 'levey-jennings-tab-container')))
 
     chart_tab.click()
 
+    sleep(5)
+
     passed += 1
     log(passed, total, "User has landed on Levey Jennings module")
 
-    ### BASELINE TESTS ##
-    baselineList = WebDriverWait(driver, 5).until(
+    baselineList = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, 'baseline-tab-btn-lv')))
 
     baselineList.click()
+
+    sleep(5)
 
     passed += 1
     log(passed, total, "Baselines had been successfully loaded")
 
     driver.get_screenshot_as_file('baseline-tab-expanded.png')
 
-    sleep(5)
-
-    baseline = WebDriverWait(driver, 5).until(
+    baseline = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, '#baseline-tab-btn-lv ul.list-group li:nth-of-type(2)')))
 
     baseline.click()
 
     passed += 1
     log(passed, total, "User has successfully selected a baseline from menu")
-    
+    sleep(5)
+
     ### PLOTTING STATISTICS TESTS ##
     #click on plotting
-    plottingList = WebDriverWait(driver, 5).until(
+    plottingList = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, 'plotting-statistics-btn')))
 
     plottingList.click()
@@ -126,7 +140,7 @@ try:
     sleep(5)
 
     #click on 3rd option
-    plotOption = WebDriverWait(driver, 5).until(
+    plotOption = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, '#plotting-statistics-btn ul.list-group  li:nth-of-type(3)')))
     
     plotOption.click()
@@ -135,7 +149,7 @@ try:
     log(passed, total, "User has successfully selected a plotting statistic from menu")
     
     #seep 3 seconds
-    sleep(3)
+    sleep(5)
     
     #take a picture
     driver.get_screenshot_as_file('mfi-chart-loaded.png')
@@ -158,10 +172,11 @@ try:
 
     sleep(5)
 
-    driver.get_screenshot_as_file('blue-channel.png')
-    passed += 1
-    print(driver.current_url)
+    test('ToggleBarChart', 'view-bar-chart', 5)
 
+    test('ToggleMultipleChart', 'view-grid-chart', 5)
+
+    print(driver.current_url)
 
 except BaseException as e:
 
