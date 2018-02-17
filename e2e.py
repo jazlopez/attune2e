@@ -54,46 +54,71 @@ try:
     passed += 1
     log(passed, total, "User has been logged in successfully")
 
-    # sleep(5)
-    #
-    # # collapse
-    # sidebar = WebDriverWait(driver, 5).until(
-    #     EC.presence_of_element_located((By.ID, 'collapse-button')))
-    #
-    # sidebar.click()
-    #
-    # print("Sidebar has been collapsed")
-    #
-    # devices = WebDriverWait(driver, 2).until(
-    #     EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'button.device-item')))
-    #
-    # current_device = devices[0]
-    # current_device.click()
-    #
-    # chart_tab = WebDriverWait(driver, 5).until(
-    #     EC.presence_of_element_located((By.ID, 'levey-jennings-tab-container')))
-    #
-    # chart_tab.click()
-    #
-    # baselineList = WebDriverWait(driver, 5).until(
-    #     EC.presence_of_element_located((By.ID, 'baseline-tab-btn-lv')))
-    #
-    # baselineList.click()
-    #
-    # driver.get_screenshot_as_file('baseline-tab-expanded.png')
-    #
-    # sleep(5)
-    #
-    # baseline = WebDriverWait(driver, 5).until(
-    #     EC.presence_of_element_located((By.CSS_SELECTOR, '#baseline-tab-btn-lv ul.list-group  li:nth-of-type(2)')))
-    #
-    # baseline.click()
-    #
-    # sleep(5)
-    #
-    # driver.get_screenshot_as_file('baseline-click.png')
-    #
-    # print(driver.current_url)
+    sleep(5)
+    
+    # collapse
+    sidebar = WebDriverWait(driver, 5).until(
+        EC.presence_of_element_located((By.ID, 'collapse-button')))
+    
+    sidebar.click()
+    
+    print("Sidebar has been collapsed")
+    
+    devices = WebDriverWait(driver, 2).until(
+        EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'button.device-item')))
+    
+    current_device = devices[0]
+    current_device.click()
+    
+    chart_tab = WebDriverWait(driver, 5).until(
+        EC.presence_of_element_located((By.ID, 'levey-jennings-tab-container')))
+    
+    chart_tab.click()
+    
+    baselineList = WebDriverWait(driver, 5).until(
+        EC.presence_of_element_located((By.ID, 'baseline-tab-btn-lv')))
+    
+    baselineList.click()
+    
+    driver.get_screenshot_as_file('baseline-tab-expanded.png')
+    
+    sleep(5)
+    
+    baseline = WebDriverWait(driver, 5).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, '#baseline-tab-btn-lv ul.list-group  li:nth-of-type(2)')))
+    
+    baseline.click()
+    
+    sleep(5)
+    
+    driver.get_screenshot_as_file('baseline-click.png')
+    
+    driver.get_screenshot_as_file('plotting-sts-tab-expanded.png')
+
+    sleep(5)
+
+    #click on plotting
+    plottingList = WebDriverWait(driver, 5).until(
+        EC.presence_of_element_located((By.ID, 'plotting-statistics-btn')))
+
+    plottingList.click()
+    
+    sleep(5)
+
+    #click on 3rd option
+    plotOption = WebDriverWait(driver, 5).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, '#plotting-statistics-btn ul.list-group  li:nth-of-type(3)')))
+    
+    plotOption.click()
+
+    #seep 3 seconds
+    sleep(3)
+    
+    #take a picture
+    driver.get_screenshot_as_file('mfi-chart-loaded.png')
+    
+    
+    
 
 
 except Exception as e:
