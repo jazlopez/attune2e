@@ -92,13 +92,14 @@ try:
     passed += 1
     log(passed, total, "User has landed on Levey Jennings module")
 
+    ### BASELINE TESTS ##
     baselineList = WebDriverWait(driver, 5).until(
         EC.presence_of_element_located((By.ID, 'baseline-tab-btn-lv')))
 
     baselineList.click()
 
     passed += 1
-    log(passed, total, "Baseline has been successfully loaded")
+    log(passed, total, "Baselines had been successfully loaded")
 
     driver.get_screenshot_as_file('baseline-tab-expanded.png')
 
@@ -110,12 +111,17 @@ try:
     baseline.click()
 
     passed += 1
-
+    log(passed, total, "User has successfully selected a baseline from menu")
+    
+    ### PLOTTING STATISTICS TESTS ##
     #click on plotting
     plottingList = WebDriverWait(driver, 5).until(
         EC.presence_of_element_located((By.ID, 'plotting-statistics-btn')))
 
     plottingList.click()
+    
+    passed += 1
+    log(passed, total, "Plotting statistics had been successfully loaded")
     
     sleep(5)
 
@@ -125,18 +131,35 @@ try:
     
     plotOption.click()
 
+    passed += 1
+    log(passed, total, "User has successfully selected a plotting statistic from menu")
+    
     #seep 3 seconds
     sleep(3)
     
     #take a picture
     driver.get_screenshot_as_file('mfi-chart-loaded.png')
 
-    log(passed, total, "User has successfully selected a baseline from menu")
+    ### LASER CHANNEL TESTS ##
+    channelList = WebDriverWait(driver, 5).until(
+        EC.presence_of_element_located((By.ID, 'channels-levey-jennings')))
+
+    channelOption = WebDriverWait(driver, 3).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, '#channels-levey-jennings div.channel-btn.base-channel-btn:nth-child(3)')))
+    
+    channelOption.click()
+
+    passed += 1
+    log(passed, total, "User has successfully selected a channel from available channels")
+    
+    sleep(3)
+    
+    driver.get_screenshot_as_file('blue-channel-chart-loaded.png')
 
     sleep(5)
 
-    driver.get_screenshot_as_file('baseline-click.png')
-
+    driver.get_screenshot_as_file('blue-channel.png')
+    passed += 1
     print(driver.current_url)
 
 
