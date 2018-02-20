@@ -47,9 +47,9 @@ config = {
 
     'url': {
 
-        'login': 'http://localhost.thermofisher.com:8080',
+        'login': 'https://test.apps.thermofisher.com/apps/cytometer/#/?deviceId=da108ccf-633a-11e7-8624-0242ac11000a19',
 
-        'homepage': 'http://localhost.thermofisher.com:8080/#/'
+        'homepage': 'https://test.apps.thermofisher.com/apps/cytometer/#/?deviceId=da108ccf-633a-11e7-8624-0242ac11000a19'
 
     },
 
@@ -165,6 +165,8 @@ try:
     passed += 1
     log(passed, total, "User has successfully moved to the next page")
 
+    testBySelector('nextPage', 'div.icon-arrow-right')
+
     #last page
     #should test the '>' get inactive
     lastPage = WebDriverWait(driver, 3).until(
@@ -178,6 +180,7 @@ try:
     passed += 1
     log(passed, total, "User has successfully moved to the previous page")
 
+    testBySelector('previousPage', 'div.icon-arrow-left')
     #first page
     #should test the '<' get inactive
     firstPage = WebDriverWait(driver, 3).until(
