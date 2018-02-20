@@ -151,9 +151,9 @@ try:
     passed +=1
     log(passed, total, "Toggle Deviation")
 
-    testById('ButtonDeviation', 'svg_FSC_button_average', 5)
+    testById('ButtonAverage', 'svg_FSC_button_average', 5)
     passed +=1
-    log(passed, total, "Toggle Deviation")
+    log(passed, total, "Toggle Average")
 
     ### LASER CHANNEL TESTS ##
     testBySelector('channelsLeveyJennings', '#channels-levey-jennings div.channel-btn.base-channel-btn:nth-child(3)')
