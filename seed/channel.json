@@ -1,0 +1,104 @@
+{
+    "modelnumber": "0A29009",
+    "lasers": [
+        {
+            "laser": "scatter",
+            "lasercolor": "3684665",
+            "lasersortorder": 0,
+            "channels": [
+                {
+                    "channel": "FSC",
+                    "channelsortorder": 0
+                },
+                {
+                    "channel": "SSC",
+                    "channelsortorder": 1
+                }
+            ]
+        },
+        {
+            "laser": "blue",
+            "lasercolor": "475293",
+            "lasersortorder": 1,
+            "channels": [
+                {
+                    "channel": "BL1",
+                    "channelsortorder": 0
+                },
+                {
+                    "channel": "BL2",
+                    "channelsortorder": 1
+                }
+            ]
+        },
+        {
+            "laser": "red",
+            "lasercolor": "12452112",
+            "lasersortorder": 2,
+            "channels": [
+                {
+                    "channel": "RL1",
+                    "channelsortorder": 0
+                },
+                {
+                    "channel": "RL2",
+                    "channelsortorder": 1
+                },
+                {
+                    "channel": "RL3",
+                    "channelsortorder": 2
+                }
+            ]
+        },
+        {
+            "laser": "violet",
+            "lasercolor": "6950318",
+            "lasersortorder": 3,
+            "channels": [
+                {
+                    "channel": "VL1",
+                    "channelsortorder": 0
+                },
+                {
+                    "channel": "VL2",
+                    "channelsortorder": 1
+                },
+                {
+                    "channel": "VL3",
+                    "channelsortorder": 2
+                },
+                {
+                    "channel": "VL4",
+                    "channelsortorder": 3
+                },
+                {
+                  "channel": "VL5",
+                  "channelsortorder": 4
+                },
+                {
+                  "channel": "VL6",
+                  "channelsortorder": 5
+                }
+            ]
+        },
+        {
+            "laser": "yellow",
+            "lasercolor": "12557060",
+            "lasersortorder": 4,
+            "channels": [
+                {
+                    "channel": "YL1",
+                    "channelsortorder": 0
+                },
+                {
+                    "channel": "YL2",
+                    "channelsortorder": 1
+                },
+                {
+                    "channel": "YL3",
+                    "channelsortorder": 2
+                }
+            ]
+        }
+    ]
+}

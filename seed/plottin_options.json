@@ -1,0 +1,49 @@
+{
+    "plottingstatistics": [
+        {
+            "displayname" : "PMTV",
+            "technicalname" : "pmtv",
+            "statisticsortorder" : 0
+        },
+        {
+            "displayname" : "Delta PMTV",
+            "technicalname" : "deltapmtv",
+            "statisticsortorder" : 1
+        },
+        {
+            "displayname" : "Measured MFI",
+            "technicalname" : "measuredmfi",
+            "statisticsortorder" : 2
+        },
+        {
+            "displayname" : "Robust %CV",
+            "technicalname" : "robustcv",
+            "statisticsortorder" : 3
+        },
+        {
+            "displayname" : "Quantum Efficiency (Qr)",
+            "technicalname" : "quantumefficiency",
+            "statisticsortorder" : 4
+        },
+        {
+            "displayname" : "Background (Br)",
+            "technicalname" : "background",
+            "statisticsortorder" : 5
+        },
+        {
+            "displayname" : "Linearity",
+            "technicalname" : "linearity",
+            "statisticsortorder" : 6
+        },
+        {
+            "displayname" : "Area Scaling Factor",
+            "technicalname" : "areascalingfactor",
+            "statisticsortorder" : 7
+        },
+        {
+            "displayname" : "Laser Delay",
+            "technicalname" : "laserdelay",
+            "statisticsortorder" : 8
+        }
+    ]
+}
