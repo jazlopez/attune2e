@@ -21,10 +21,10 @@ def log(of, out, message):
     print(Fore.BLUE + "[{}/{}] {}".format(of, out, message))
 
 
-def test(name, selector, timeout=3):
+def testById(name, id, timeout=3):
 
     element = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.ID, selector)))
+        EC.presence_of_element_located((By.ID, id)))
 
     element.click()
 
@@ -32,6 +32,16 @@ def test(name, selector, timeout=3):
 
     driver.get_screenshot_as_file(name + '.png')
 
+def testBySelector(name, selector, timeout=3):
+
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, selector)))
+    
+    element.click()
+
+    sleep(timeout)
+
+    driver.get_screenshot_as_file(name + '.png')
 
 config = {
 
@@ -54,7 +64,7 @@ driver = webdriver.Remote("http://localhost:4444/wd/hub",
 driver.get(config['url']['login'])
 
 passed = 0
-total = 10
+total = 15
 
 
 try:
@@ -78,6 +88,7 @@ try:
     passed += 1
     log(passed, total, "User has been successfully logged in")
 
+    sleep(10)
     # collapse
     sidebar = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, 'collapse-button')))
@@ -128,53 +139,54 @@ try:
     sleep(5)
 
     ### PLOTTING STATISTICS TESTS ##
-    #click on plotting
-    plottingList = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.ID, 'plotting-statistics-btn')))
-
-    plottingList.click()
-    
+    testById('PlottingStatisticsList', 'plotting-statistics-btn', 5)
     passed += 1
     log(passed, total, "Plotting statistics had been successfully loaded")
-    
-    sleep(5)
 
-    #click on 3rd option
-    plotOption = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, '#plotting-statistics-btn ul.list-group  li:nth-of-type(3)')))
-    
-    plotOption.click()
-
+    testBySelector('PlottingStatisticsElement', '#plotting-statistics-btn ul.list-group  li:nth-of-type(3)', 5)
     passed += 1
     log(passed, total, "User has successfully selected a plotting statistic from menu")
-    
-    #seep 3 seconds
-    sleep(5)
-    
-    #take a picture
-    driver.get_screenshot_as_file('mfi-chart-loaded.png')
 
     ### LASER CHANNEL TESTS ##
-    channelList = WebDriverWait(driver, 5).until(
-        EC.presence_of_element_located((By.ID, 'channels-levey-jennings')))
-
-    channelOption = WebDriverWait(driver, 3).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, '#channels-levey-jennings div.channel-btn.base-channel-btn:nth-child(3)')))
-    
-    channelOption.click()
-
+    testBySelector('channelsLeveyJennings', '#channels-levey-jennings div.channel-btn.base-channel-btn:nth-child(3)')
     passed += 1
     log(passed, total, "User has successfully selected a channel from available channels")
     
-    sleep(3)
+    ### PAGINATION TESTS ##
+    testBySelector('nextPage', 'div.icon-arrow-right')
+    passed += 1
+    log(passed, total, "User has successfully moved to the next page")
+
+    #last page
+    #should test the '>' get inactive
+    lastPage = WebDriverWait(driver, 3).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, 'div.arrow.icon-arrow-right')))
     
-    driver.get_screenshot_as_file('blue-channel-chart-loaded.png')
+    if(lastPage != 'undefined'):
+        passed +=1
+        log(passed, total,"There was unactivated the next page button")
+    
+    testBySelector('previousPage', 'div.icon-arrow-left')
+    passed += 1
+    log(passed, total, "User has successfully moved to the previous page")
 
-    sleep(5)
+    #first page
+    #should test the '<' get inactive
+    firstPage = WebDriverWait(driver, 3).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, 'div.arrow.icon-arrow-left')))
+    
+    if(firstPage != 'undefined'):
+        passed +=1
+        log(passed, total,"There was unactivated the first page button")
 
-    test('ToggleBarChart', 'view-bar-chart', 5)
+    #Jaziel's code
+    testById('ToggleBarChart', 'view-bar-chart', 5)
+    passed += 1
+    log(passed, total, "User has successfully changed to 2 charts by page")
 
-    test('ToggleMultipleChart', 'view-grid-chart', 5)
+    testById('ToggleMultipleChart', 'view-grid-chart', 5)
+    passed += 1
+    log(passed, total, "User has successfully changed to 4 charts by page")
 
     print(driver.current_url)
 
