@@ -5,3 +5,4 @@ geckodriver.log
 bin/
 include/
 lib/
+selenium/
