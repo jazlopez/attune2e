@@ -2,4 +2,6 @@ config.py
 screenshots/
 !screenshots/.gitkeep
 geckodriver.log
-
+bin/
+include/
+lib/
