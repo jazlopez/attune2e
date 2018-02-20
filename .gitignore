@@ -8,3 +8,5 @@ lib/
 selenium/
 .Python
 pip-selfcheck.json
+.idea/
+__pycache__/
