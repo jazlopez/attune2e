@@ -1,15 +1,15 @@
-# Jaziel Lopez
+from config import E2E
 from colorama import init
 from colorama import Fore
-from colorama import Back
 from selenium import webdriver
 from selenium.webdriver.common.by import  By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
-init()
+config = E2E().config
 
+init()
 
 def error(message):
 
@@ -43,31 +43,16 @@ def testBySelector(name, selector, timeout=3):
 
     driver.get_screenshot_as_file(name + '.png')
 
-config = {
-
-    'url': {
-
-        'login': 'http://localhost.thermofisher.com:8080',
-
-        'homepage': 'http://localhost.thermofisher.com:8080/#/'
-
-    },
-
-    'username': 'miguelangel.lopez@thermofisher.com',
-
-    'password': 'Thermo123'
-}
-
-driver = webdriver.Remote("http://localhost:4444/wd/hub",
+driver = webdriver.Remote(config['url']['webdriver'],
                           webdriver.DesiredCapabilities.CHROME.copy())
 
-driver.get(config['url']['login'])
-
 passed = 0
+
 total = 17
 
-
 try:
+
+    driver.get(config['url']['login'])
 
     username = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.NAME, 'username')))
