@@ -150,6 +150,8 @@ try:
     passed += 1
     log(passed, total, "User has successfully moved to the next page")
 
+    testBySelector('nextPage', 'div.icon-arrow-right')
+
     #last page
     #should test the '>' get inactive
     lastPage = WebDriverWait(driver, 3).until(
@@ -163,6 +165,7 @@ try:
     passed += 1
     log(passed, total, "User has successfully moved to the previous page")
 
+    testBySelector('previousPage', 'div.icon-arrow-left')
     #first page
     #should test the '<' get inactive
     firstPage = WebDriverWait(driver, 3).until(
