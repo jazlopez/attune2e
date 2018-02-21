@@ -6,10 +6,14 @@ from selenium.webdriver.common.by import  By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
+import os
+
+screenshot = os.path.abspath(os.getcwd().join(['screenshots']))
 
 config = E2E().config
 
 init()
+
 
 def error(message):
 
@@ -30,7 +34,8 @@ def testById(name, id, timeout=3):
 
     sleep(timeout)
 
-    driver.get_screenshot_as_file(name + '.png')
+    driver.get_screenshot_as_file(screenshot + '/' + name + '.png')
+
 
 def testBySelector(name, selector, timeout=3):
 
@@ -41,7 +46,8 @@ def testBySelector(name, selector, timeout=3):
 
     sleep(timeout)
 
-    driver.get_screenshot_as_file(name + '.png')
+    driver.get_screenshot_as_file(screenshot + '/' + name + '.png')
+
 
 driver = webdriver.Remote(config['url']['webdriver'],
                           webdriver.DesiredCapabilities.CHROME.copy())
@@ -72,6 +78,8 @@ try:
 
     passed += 1
     log(passed, total, "User has been successfully logged in")
+
+    driver.get(config['url']['homepage'])
 
     sleep(10)
     # collapse
@@ -154,12 +162,11 @@ try:
 
     #last page
     #should test the '>' get inactive
-    lastPage = WebDriverWait(driver, 3).until(
+    lastPage = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, 'div.arrow.icon-arrow-right')))
 
-    if(lastPage != 'undefined'):
-        passed +=1
-        log(passed, total,"There was unactivated the next page button")
+    passed += 1
+    log(passed, total,"There was unactivated the next page button")
 
     testBySelector('previousPage', 'div.icon-arrow-left')
     passed += 1
@@ -171,9 +178,8 @@ try:
     firstPage = WebDriverWait(driver, 3).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, 'div.arrow.icon-arrow-left')))
 
-    if(firstPage != 'undefined'):
-        passed +=1
-        log(passed, total,"There was unactivated the first page button")
+    passed += 1
+    log(passed, total, "There was unactivated the first page button")
 
     #Jaziel's code
     testById('ToggleBarChart', 'view-bar-chart', 5)
@@ -196,9 +202,3 @@ finally:
     print("Status {} {}".format(passed, total))
     print("Finally.. closing web driver")
     driver.close()
-
-
-
-
-
-
