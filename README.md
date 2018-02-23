@@ -7,8 +7,8 @@ e2e test suite for AttuneNxt
 
 ### Prerequisites
 
-* Verify you have Python 2.7 and PIP installed before proceed to installation step.
-
+1.  Verify you have Python 2.7 and PIP installed before proceed to installation step.
+ 
 ```
 which python
 
@@ -19,12 +19,7 @@ If you receive python/pip not found see the links below to install missing pre-r
 
 * [Python](https://www.python.org/downloads/)
 * [PIP](https://pip.pypa.io/en/stable/installing/)  
-
-
-```
-pip install -r requirements.txt
-```
-
+    
 ### Installing
 
 1. Install required packages (Selenium, Colorama) via PIP.
