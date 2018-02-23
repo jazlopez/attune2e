@@ -1,19 +1,23 @@
-config = {
+class E2E:
 
-    'url': {
+    def __init__(self):
 
-        'login': '',
+        self.config = {
 
-        'homepage': ''
+            "url": {
 
-    },
+                "login": "",
 
-    'username': '',
+                "homepage":"",
 
-    'password': '',
+                "webdriver": ""
 
-    'webdriver': {
+            },
 
-        'url': '' # http://localhost:4444/wd/hub
-    }
-}
+            "username": "",
+
+            "password": ""}
+
+    def __get__(self):
+
+        return self.config
