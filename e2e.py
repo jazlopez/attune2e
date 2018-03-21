@@ -130,7 +130,7 @@ passed += 1
 log(passed, total, "User has successfully selected a baseline from menu")
 
 # resize
-driver.set_window_size(1450, 600)
+driver.set_window_size(1450, 855)
 
 testById('ButtonDeviation', 'svg_FSC_button_deviation', 5)
 passed +=1
